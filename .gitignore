@@ -1,0 +1,15 @@
+/node_modules
+*.log
+*.module.less.d.ts
+build
+
+/built
+.DS_Store
+.reviewboardrc
+/rev
+/.vscode
+/.idea
+
+/*.local.*
+/.history
+tsconfig.tsbuildinfo
