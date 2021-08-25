@@ -1,6 +1,12 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styles from './index.module.less';
 
 export default ()=>{
-    return <div className={styles.test}>text</div>
+    const [flag,setFlag] = useState(false)
+    return <>
+        <div className={styles.test} onClick={()=>{setFlag((state)=>!state)}}>text</div>
+        <If condition={flag}>
+            <div>flag</div>
+        </If>
+    </>
 }

@@ -1,4 +1,5 @@
 const path = require('path');
+const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports ={
     output:{
         path: path.resolve(__dirname,'../build'),
@@ -15,7 +16,10 @@ module.exports ={
                     {
                         loader: 'babel-loader?cacheDirectory',
                         options: {
-                            presets: ['@babel/env', '@babel/preset-react']
+                            presets: ['@babel/env', '@babel/preset-react'],
+                            plugins: [
+                                isDevelopment && require.resolve('react-refresh/babel'),
+                              ].filter(Boolean),
                         }
                     },
                 ],

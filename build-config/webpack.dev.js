@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { merge } = require('webpack-merge')
 const generateStyleLoaders = require('./webpack.loader');
 const webpackBaseConfig = require('./webpack.base');
@@ -33,6 +34,7 @@ module.exports =merge(webpackBaseConfig,{
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname,'../src/index.html')
         })
