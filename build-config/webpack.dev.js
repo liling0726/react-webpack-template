@@ -35,9 +35,6 @@ module.exports =merge(webpackBaseConfig,{
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
         new ReactRefreshWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname,'../src/index.html')
-        })
     ],
     module:{
         rules: [

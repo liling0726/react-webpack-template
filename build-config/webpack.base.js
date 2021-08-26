@@ -1,8 +1,15 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports ={
-    output:{
-        path: path.resolve(__dirname,'../build'),
+    output: {
+        path: path.resolve(__dirname,'../build/static'),
+        publicPath: '/',
+        filename: 'js/[name].boundle.js',
+        chunkFilename: 'js/[name].[contenthash:8].js',
+        clean:true
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.less', '.css'],
@@ -77,5 +84,19 @@ module.exports ={
                 },
             }
         ],
-    }
+    },
+    plugins:[
+        new AddAssetHtmlWebpackPlugin({
+            filepath: path.resolve(__dirname, '../build/dll/vendors.dll.js') // 对应的 dll 文件路径
+        }),
+        new webpack.DllReferencePlugin({
+            // 跟dll.config里面DllPlugin的context一致
+            context: process.cwd(), 
+            // dll过程生成的manifest文件
+            manifest: path.resolve(__dirname,'../build/dll','vendors-manifest.json'),
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname,'../src/index.html')
+        })
+    ]
 }
