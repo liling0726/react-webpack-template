@@ -1,8 +1,9 @@
 const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpackBaseConfig = require('./webpack.base');
 const generateStyleLoaders = require('./webpack.loader');
-module.exports =merge(webpackBaseConfig,{
+const webpackProd =merge(webpackBaseConfig,{
     devtool:'source-map',
     mode: 'production',
     optimization:{
@@ -23,3 +24,7 @@ module.exports =merge(webpackBaseConfig,{
         ]
     }
 })
+if(process.env.NODE_ENV = 'test'){
+    webpackProd.plugins.push(new BundleAnalyzerPlugin())
+}
+module.exports = webpackProd;
