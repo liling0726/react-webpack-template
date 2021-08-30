@@ -1,0 +1,6 @@
+/build
+/build-config
+/mock
+/node_modules
+/.*
+*.module.less.d.ts

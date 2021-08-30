@@ -24,7 +24,7 @@ const webpackProd =merge(webpackBaseConfig,{
         ]
     }
 })
-if(process.env.NODE_ENV = 'test'){
+if(process.env.NODE_ENV === 'test'){
     webpackProd.plugins.push(new BundleAnalyzerPlugin())
 }
 module.exports = webpackProd;
